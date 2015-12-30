@@ -1,10 +1,10 @@
 {
   "name": "screen-streamer",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Continuously takes screenshots and returns them as png buffers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,17 @@
     "screenshot"
   ],
   "author": "Dmitry Ivanov <madshall.dev@gmail.com>",
-  "license": "MIT",
+  "licenses": [
+	{
+	  "type": "MIT",
+	  "url": "https://github.com/madshall/screen-streamer/blob/master/LICENSE"
+	}
+  ],
   "dependencies": {
     "png-streamer": "0.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
   }
 }
