@@ -1,0 +1,20 @@
+{
+  "name": "screen-streamer",
+  "version": "0.0.1",
+  "description": "Continuously takes screenshots and returns them as png buffers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "screen",
+    "png",
+    "ffmpeg",
+    "screenshot"
+  ],
+  "author": "Dmitry Ivanov <madshall.dev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "png-streamer": "0.0.1"
+  }
+}
