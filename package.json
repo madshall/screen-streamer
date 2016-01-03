@@ -1,6 +1,6 @@
 {
   "name": "screen-streamer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Continuously takes screenshots and returns them as png buffers",
   "main": "index.js",
   "scripts": {

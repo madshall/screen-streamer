@@ -23,13 +23,11 @@ module.exports = exports = function(options, callback){
 			'-i',
 			':' + options.display + '+' + options.offsetX + ',' + options.offsetY,
 			'-vf',
-			'fps=' + options.fps,
+			'scale=' + options.maxWidth + ':' + options.maxHeight + ', fps=' + options.fps,
 			'-f',
 			'image2pipe',
 			'-vcodec',
 			'png',
-			'-vf',
-			'scale=' + options.maxWidth + ':' + options.maxHeight,
 			'pipe:1'
 		],
 		ffmpeg = spawn('ffmpeg', ffmpegArgs);
