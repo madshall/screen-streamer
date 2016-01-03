@@ -1,5 +1,6 @@
 var spawn = require('child_process').spawn,
-	pngStreamer = require('png-streamer');
+	PngStreamer = require('png-streamer'),
+	JpgStreamer = require('jpg-streamer');
 
 
 module.exports = exports = function(options, callback){
@@ -10,10 +11,16 @@ module.exports = exports = function(options, callback){
 		offsetY: 0,
 		display: '0.0',
 		maxWidth: -1,
-		maxHeight: -1
+		maxHeight: -1,
+		format: 'png',
+		quality: '1'
 	}, options);
 
-	var ffmpegArgs = [
+	var formats = {
+			jpeg: 'image2pipe',
+			png: 'image2pipe'
+		},
+		ffmpegArgs = [
 			'-t',
 			options.duration,
 			'-s',
@@ -25,12 +32,23 @@ module.exports = exports = function(options, callback){
 			'-vf',
 			'scale=' + options.maxWidth + ':' + options.maxHeight + ', fps=' + options.fps,
 			'-f',
-			'image2pipe',
-			'-vcodec',
-			'png',
-			'pipe:1'
-		],
-		ffmpeg = spawn('ffmpeg', ffmpegArgs);
+			formats[options.format]
+		];
 
-	new pngStreamer(ffmpeg, callback);
+
+	if(options.format == 'jpeg')
+		[].push.apply(ffmpegArgs, ['-q', options.quality]);
+
+	if(options.format == 'png')
+		[].push.apply(ffmpegArgs, ['-vcodec', 'png']);
+
+
+	ffmpeg = spawn('ffmpeg', ffmpegArgs.push('pipe:1') && ffmpegArgs);
+
+
+	if(options.format == 'png')
+		new PngStreamer(ffmpeg, callback);
+	else if(options.format == 'jpeg'){
+		new JpgStreamer(ffmpeg, callback);
+	}
 };

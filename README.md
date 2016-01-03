@@ -1,5 +1,5 @@
 # screen-streamer
-This module continuously takes screenshots and returns them as png buffers. It uses **FFMPEG** with **x11grab** format support so make sure to have it installed.
+This module continuously takes screenshots and returns them as png or jpeg buffers. It uses **FFMPEG** with **x11grab** format support so make sure to have it installed.
 
 ## Installation
 ```bash
@@ -20,6 +20,8 @@ screenStreamer(options, callback)
 - `maxWidth` — `[Integer]` the maximum width of the output image; default: -1, means no scaling
 - `maxHeight` — `[Integer]` the maximum height of the output image; default: -1, means no scaling
 - `display` — `[String]` the display id; default: "0.0"
+- `format` — `[String]` the format of the image to return, either 'png' or 'jpeg'; default: 'png'
+- `quality` — `[Integer]` the jpeg image quality, from 1 (highest) to 100 (lowest); default: 1
 
 `callback` — a callback function to pass the result Buffer to: `function(err, buffer){ ... }`
 
@@ -34,7 +36,8 @@ screenStreamer({
     width: 1024,
     height: 768,
     fps: 1,
-    duration: 10
+    duration: 10,
+    format: 'png'
   }, function(err, buffer){
     if (err) throw err;
   

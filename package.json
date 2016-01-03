@@ -1,6 +1,6 @@
 {
   "name": "screen-streamer",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Continuously takes screenshots and returns them as png buffers",
   "main": "index.js",
   "scripts": {
@@ -22,12 +22,13 @@
   ],
   "author": "Dmitry Ivanov <madshall.dev@gmail.com>",
   "licenses": [
-	{
-	  "type": "MIT",
-	  "url": "https://github.com/madshall/screen-streamer/blob/master/LICENSE"
-	}
+    {
+      "type": "MIT",
+      "url": "https://github.com/madshall/screen-streamer/blob/master/LICENSE"
+    }
   ],
   "dependencies": {
+    "jpg-streamer": "^0.1.0",
     "png-streamer": "0.0.1"
   },
   "devDependencies": {
