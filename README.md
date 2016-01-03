@@ -17,6 +17,8 @@ screenStreamer(options, callback)
 - `height` — `[Integer]` the height of screen area to capture; **required**
 - `offsetX` — `[Integer]` the horizontal offset of screen area to capture; default: 0
 - `offsetY` — `[Integer]` the vertical offset of screen area to capture; default: 0
+- `maxWidth` — `[Integer]` the maximum width of the output image; default: -1, means no scaling
+- `maxHeight` — `[Integer]` the maximum height of the output image; default: -1, means no scaling
 - `display` — `[String]` the display id; default: "0.0"
 
 `callback` — a callback function to pass the result Buffer to: `function(err, buffer){ ... }`

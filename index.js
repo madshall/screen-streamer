@@ -3,32 +3,36 @@ var spawn = require('child_process').spawn,
 
 
 module.exports = exports = function(options, callback){
-	options = Object.assign(options, {
-		duration: Number.POSITIVE_INFINITY,
+	options = Object.assign({
+		duration: 86400,
 		fps: 1,
 		offsetX: 0,
 		offsetY: 0,
-		display: '0.0'
-	});
-	
+		display: '0.0',
+		maxWidth: -1,
+		maxHeight: -1
+	}, options);
+
 	var ffmpegArgs = [
-    	    '-t', 
-    	    options.duration, 
-    	    '-s', 
-    	    options.width + 'x' + options.height, 
-    	    '-f', 
-    	    'x11grab', 
-    	    '-i', 
-    	    ':' + options.display + '+' + options.offsetX + ',' + options.offsetY, 
-    	    '-vf',
-    	    'fps=' + options.fps,
-    	    '-f',
-    	    'image2pipe',
-    	    '-vcodec', 
-    	    'png', 
-    	    'pipe:1'
-        ], 
-        ffmpeg = spawn('ffmpeg', ffmpegArgs);
-	
+			'-t',
+			options.duration,
+			'-s',
+			options.width + 'x' + options.height,
+			'-f',
+			'x11grab',
+			'-i',
+			':' + options.display + '+' + options.offsetX + ',' + options.offsetY,
+			'-vf',
+			'fps=' + options.fps,
+			'-f',
+			'image2pipe',
+			'-vcodec',
+			'png',
+			'-vf',
+			'scale=' + options.maxWidth + ':' + options.maxHeight,
+			'pipe:1'
+		],
+		ffmpeg = spawn('ffmpeg', ffmpegArgs);
+
 	new pngStreamer(ffmpeg, callback);
 };
