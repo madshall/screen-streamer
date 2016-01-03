@@ -11,7 +11,7 @@ npm install screen-streamer
 screenStreamer(options, callback)
 
 `options` — is an object literal with the following properties
-- `duration` — `[Integer]` duration of screen capturing in seconds; default: Number.MAX_SAFE_INTEGER (a kind of forever)
+- `duration` — `[Integer]` duration of screen capturing in seconds; default: 86400
 - `fps` — `[Integer]` number of frames per second to capture; default: 1
 - `width` — `[Integer]` the width of screen area to capture; **required**
 - `height` — `[Integer]` the height of screen area to capture; **required**
