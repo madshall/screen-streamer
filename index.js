@@ -1,4 +1,5 @@
 var spawn = require('child_process').spawn,
+	Stream = require('stream'),
 	PngStreamer = require('png-streamer'),
 	JpgStreamer = require('jpg-streamer');
 
@@ -45,6 +46,12 @@ module.exports = exports = function(options, callback){
 
 	ffmpeg = spawn('ffmpeg', ffmpegArgs.push('pipe:1') && ffmpegArgs);
 
+
+	if(!callback){
+		var stream = new Stream();
+		ffmpeg.stdout.pipe(stream);
+		return stream;
+	}
 
 	if(options.format == 'png')
 		new PngStreamer(ffmpeg, callback);
