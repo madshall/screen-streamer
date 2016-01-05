@@ -8,7 +8,7 @@ npm install screen-streamer
 ```
 
 ## Syntax
-screenStreamer(options, callback)
+screenStreamer(options[, callback])
 
 `options` — is an object literal with the following properties
 - `duration` — `[Integer]` duration of screen capturing in seconds; default: 86400
@@ -23,7 +23,7 @@ screenStreamer(options, callback)
 - `format` — `[String]` the format of the image to return, either 'png' or 'jpeg'; default: 'png'
 - `quality` — `[Integer]` the jpeg image quality, from 1 (highest) to 100 (lowest); default: 1
 
-`callback` — a callback function to pass the result Buffer to: `function(err, buffer){ ... }`
+`callback` — a callback function to pass the result Buffer to: `function(err, buffer){ ... }` if ommited then a call to `screenStreamer` function will return a `Stream`
 
 ## Example
 The code below takes a screenshot from main display every second during 10 seconds and saves it to "screenshot_%d.png"
@@ -47,4 +47,17 @@ screenStreamer({
   });
 ```
 
+This example shows how to use screenStreamer as a Stream
+```javascript
+var screenStreamer = require('screen-streamer');
+var fs = require('fs');
+
+screenStreamer({
+    width: 1024,
+    height: 768,
+    fps: 1,
+    duration: 10,
+    format: 'png'
+  }).pipe(fs.createWriteStream('./screenshot.png'));
+```
 

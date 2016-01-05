@@ -80,4 +80,14 @@ describe('#screenStreamer', function() {
 			duration: 1
 		}).should.be.an.instanceof(Stream)
 	});
+
+	it('returns a Stream which has a pipe method when called with one parameter', function() {
+		var i = 0;
+		screenStreamer({
+			width: 320,
+			height: 240,
+			fps: 20,
+			duration: 1
+		}).pipe.should.be.an.instanceof(Function)
+	});
 });
